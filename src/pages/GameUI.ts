@@ -4,7 +4,7 @@ import { Fonts } from '../data/Fonts';
 import { IResizeEvent } from '../services/GameEvents';
 import { QuestUI } from '../components/QuestUI';
 import { ResourceUI } from '../components/ResourceUI';
-import { IngredientType, IReward, RewardType, ScoreType } from '../data/AlchemyData';
+import { IIngredient, IngredientType, IReward, RewardType, ScoreType } from '../data/AlchemyData';
 import { Button } from '../components/ui/Button';
 import { IngredientUI } from '../components/IngredientUI';
 import { Colors } from '../data/Colors';
@@ -54,18 +54,18 @@ export class GameUI extends BaseUI {
     }
   }
 
-  private addRewardCraft = (reward: IReward) => {
+  private addRewardCraft = (reward: IReward, ingredients: IIngredient[]) => {
     if (reward) {
       let dialogueText: string = '';
       if (reward.type === 'value') {
         this.resourceUI.addResource(reward.id, reward.count);
-        dialogueText = `Congratulations! You crafted ${reward.count} ${RewardType[reward.id]}(s).`;
+        dialogueText = `Congratulations! You turned ${ingredients[0].label} and ${ingredients[1].label} into ${reward.count} ${RewardType[reward.id]}(s).`;
       } else if (reward.type === 'score') {
         this.resourceUI.addScore(reward.id, reward.count);
-        dialogueText = `Congratulations! You crafted ${reward.count} ${ScoreType[reward.id]}(s).`;
+        dialogueText = `Congratulations! You turned ${ingredients[0].label} and ${ingredients[1].label} into ${reward.count} ${ScoreType[reward.id]}(s).`;
       } else {
         this.ingredientUI.addIngredient(reward.id, reward.count);
-        dialogueText = `Congratulations! You crafted ${reward.count} ${IngredientType[reward.id]}(s).`;
+        dialogueText = `Congratulations! You turned ${ingredients[0].label} and ${ingredients[1].label} into ${reward.count} ${IngredientType[reward.id]}(s).`;
       }
       let dialogue = new SimpleModal(dialogueText);
       this.addDialogueWindow(dialogue);

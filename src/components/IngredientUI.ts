@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js';
-import { AlchemyData, IngredientType, IReward, RewardType, ScoreType } from '../data/AlchemyData';
+import { AlchemyData, IIngredient, IngredientType, IReward, RewardType, ScoreType } from '../data/AlchemyData';
 import { Colors } from '../data/Colors';
 import { AlchemyService } from '../services/AlchemyService';
 import { IngredientItem } from './IngredientItem';
@@ -13,7 +13,7 @@ export class IngredientUI extends PIXI.Container {
   public selectedIndex: number[] = [-1, -1];
   public brewButton: Button;
 
-  constructor(private onRewardAdded: (reward: IReward) => void) {
+  constructor(private onRewardAdded: (reward: IReward, ingredients: IIngredient[]) => void) {
     super();
     let background: PIXI.Graphics;
     let contents: PIXI.Container;
@@ -54,8 +54,8 @@ export class IngredientUI extends PIXI.Container {
     this.brewButton.position.set((300 - 20 - this.brewButton.getWidth()) / 2, this.selectedElements[1].y + 80);
     this.brewButton.visible = false;
 
-    this.addIngredient(IngredientType.Bug, 4);
-    this.addIngredient(IngredientType.Water, 4);
+    // this.addIngredient(IngredientType.Bug, 4);
+    // this.addIngredient(IngredientType.Water, 4);
   }
 
   public ingredientSelected = (i: number, selected: boolean): boolean => {
@@ -125,10 +125,10 @@ export class IngredientUI extends PIXI.Container {
       this.ingredients[ingredients[0].id]--;
       this.ingredients[ingredients[1].id]--;
 
-      this.onRewardAdded(reward);
+      this.onRewardAdded(reward, ingredients);
       this.refreshDisplay();
     } else {
-      this.onRewardAdded(null);
+      this.onRewardAdded(null, ingredients);
     }
   }
 }
