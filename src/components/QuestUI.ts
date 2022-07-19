@@ -33,11 +33,13 @@ export class QuestUI extends PIXI.Container {
       this.removeChild(el);
     }
 
-    for (let i = 0; i < AlchemyData.config.questsPerDay; i++) {
-      let index = Math.floor(Math.random() * AlchemyData.quests.length);
-      let quest = AlchemyData.quests[index];
-      this.addQuest(quest);
-    }
+    // for (let i = 0; i < AlchemyData.config.questsPerDay; i++) {
+    //   let index = Math.floor(Math.random() * AlchemyData.quests.length);
+    //   let quest = AlchemyData.quests[index];
+    //   this.addQuest(quest);
+    // }
+
+    AlchemyData.quests.forEach(quest => this.addQuest(quest));
 
     this.onRewardAdded({type: 'score', id: ScoreType.QuestRefreshes, count: 1});
   }

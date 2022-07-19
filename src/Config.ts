@@ -7,7 +7,7 @@ export const CONFIG = {
     BACKGROUND_COLOR: 0,
     MOUSE_HOLD: 200,
     FPS: 60,
-    BORDER: true,
+    BORDER: false,
   },
   STAGE: {
     SCREEN_WIDTH: 800,

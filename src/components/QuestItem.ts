@@ -12,9 +12,7 @@ export class QuestItem extends PIXI.Container {
     this.textBlock = new PIXI.Text(`${label}\n${reward}`, { fill: 0xffffff, fontSize: 16, align: 'center' });
     this.textBlock.x = (myWidth - this.textBlock.width) / 2;
 
-    this.drawBack(Colors.PANEL_BACK_INNER, Colors.PANEL_BORDER_INNER);
-    this.background.beginFill(Colors.PANEL_BACK_INNER).lineStyle(2, Colors.PANEL_BORDER_INNER)
-      .drawRoundedRect(0, 0, myWidth, myHeight, 5);
+    this.drawBack(Colors.QUEST_BACK, Colors.QUEST_BORDER);
 
     this.addChild(this.background, this.textBlock);
 
@@ -33,5 +31,6 @@ export class QuestItem extends PIXI.Container {
     this.removeListener('pointerdown', this.onClick);
     this.textBlock.text += '\n ~COMPLETE~';
     this.textBlock.x = (this.width - this.textBlock.width) / 2;
+    this.drawBack(Colors.PANEL_BACK_INNER, Colors.PANEL_BORDER_INNER);
   }
 }

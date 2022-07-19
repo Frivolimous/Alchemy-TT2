@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js';
-import { AlchemyData, IngredientType, IReward, RewardType } from '../data/AlchemyData';
+import { AlchemyData, IIngredient, IngredientType, IReward, RewardType } from '../data/AlchemyData';
 import { Colors } from '../data/Colors';
 
 export const AlchemyService = {
@@ -24,5 +24,13 @@ export const AlchemyService = {
     title.y = (30 - title.height) / 2;
 
     return [background, container];
+  },
+
+  getCraftingReward(ingredients: IIngredient[]): IReward {
+    let recipe = AlchemyData.recipes.find(el => {
+      return (el.ingredients[0] === ingredients[0].id && el.ingredients[1] === ingredients[1].id) || (el.ingredients[1] === ingredients[0].id && el.ingredients[0] === ingredients[1].id);
+    });
+
+    return recipe ? recipe.result : null;
   },
 };

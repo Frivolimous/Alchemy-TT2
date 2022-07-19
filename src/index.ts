@@ -19,6 +19,8 @@ import { Navbar } from './pages/_Navbar';
 import { DEBUG_MODE } from './services/_Debug';
 import { TextureData } from './data/TextureData';
 import { FontLoader } from './services/FontLoader';
+import { GameUI } from './pages/GameUI';
+import { IngredientItem } from './components/IngredientItem';
 
 export let interactionMode: 'desktop'|'mobile' = 'desktop';
 
@@ -87,7 +89,7 @@ export let Facade = new class FacadeInner {
 
     // load fonts then preloader!
     GameEvents.APP_LOG.publish({type: 'INITIALIZE', text: 'Primary Setup'});
-    this.init();
+    window.requestAnimationFrame(this.init);
     // window.requestAnimationFrame(() => FontLoader.load(fonts).then(this.init));
   }
 
@@ -106,6 +108,7 @@ export let Facade = new class FacadeInner {
       });
 
       let menu = new MenuUI();
+      // let menu = new GameUI();
 
       this.currentPage = menu;
       this.screen.addChild(menu);
