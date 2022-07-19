@@ -3,7 +3,7 @@ export const CONFIG = {
     SCREEN_WIDTH: 800,
     SCREEN_HEIGHT: 800,
     STAGE_BUFFER: 80,
-    RESOLUTION: 1,
+    RESOLUTION: 4,
     BACKGROUND_COLOR: 0,
     MOUSE_HOLD: 200,
     FPS: 60,

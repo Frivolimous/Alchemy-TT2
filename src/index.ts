@@ -87,7 +87,8 @@ export let Facade = new class FacadeInner {
 
     // load fonts then preloader!
     GameEvents.APP_LOG.publish({type: 'INITIALIZE', text: 'Primary Setup'});
-    window.requestAnimationFrame(() => FontLoader.load(fonts).then(this.init));
+    this.init();
+    // window.requestAnimationFrame(() => FontLoader.load(fonts).then(this.init));
   }
 
   public init = () => {
@@ -111,8 +112,8 @@ export let Facade = new class FacadeInner {
       menu.navIn();
 
       if (DEBUG_MODE) {
-        let navbar = new Navbar();
-        this.screen.addChild(navbar);
+        // let navbar = new Navbar();
+        // this.screen.addChild(navbar);
       }
 
       this.finishResize();

@@ -10,4 +10,16 @@ export const Colors = {
   },
   HealColor: 0x00ffff,
   DefendColor: 0x22dd22,
+
+  GAME_BACK: 0x333333,
+
+  PANEL_BORDER: 0x827c79,
+  PANEL_BACK: 0x2a2a36,
+  PANEL_TEXT_HIGHLIGHT: 0xffffff,
+  PANEL_TEXT_NORMAL: 0xf0f0f0,
+  PANEL_BACK_INNER: 0x383849,
+  PANEL_BORDER_INNER: 0x70709e,
+
+  BUTTON_BACK: 0x4a98be,
+  BUTTON_BORDER: 0x61b83e,
 };

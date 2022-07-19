@@ -1,8 +1,10 @@
 export const EnglishStringData = {
-  GAME_TITLE: 'Space Garden',
+  GAME_TITLE: 'Alchemy Prototype',
+  MENU_CONFIRM_RESET: 'Are you sure you want to delete all your data and start over?',
   BUTTON: {
     MENU: 'Menu',
     HOME: 'Home',
+    RESET: 'Full Reset',
     NEW_CHAR: 'New Character',
     LOAD_CHAR: 'Load Character',
     STATISTICS: 'Statistics',
