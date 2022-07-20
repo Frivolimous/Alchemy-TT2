@@ -2,6 +2,7 @@ import * as PIXI from 'pixi.js';
 import { AlchemyData, IIngredient, IngredientType, IReward, RewardType, ScoreType } from '../data/AlchemyData';
 import { Colors } from '../data/Colors';
 import { AlchemyService } from '../services/AlchemyService';
+import { SaveManager } from '../services/SaveManager';
 import { IngredientItem } from './IngredientItem';
 import { Button } from './ui/Button';
 import { SimpleModal } from './ui/modals/SimpleModal';
@@ -15,6 +16,10 @@ export class IngredientUI extends PIXI.Container {
 
   constructor(private onRewardAdded: (reward: IReward, ingredients: IIngredient[]) => void) {
     super();
+
+    let extrinsic = SaveManager.getExtrinsic();
+    this.ingredients = extrinsic.ingredients;
+
     let background: PIXI.Graphics;
     let contents: PIXI.Container;
     let topText = new PIXI.Text('Collect ingredients by completing special event quests.', {fontSize: 14, fill: Colors.PANEL_TEXT_NORMAL, wordWrap: true, wordWrapWidth: 280});
@@ -54,8 +59,7 @@ export class IngredientUI extends PIXI.Container {
     this.brewButton.position.set((300 - 20 - this.brewButton.getWidth()) / 2, this.selectedElements[1].y + 80);
     this.brewButton.visible = false;
 
-    // this.addIngredient(IngredientType.Bug, 4);
-    // this.addIngredient(IngredientType.Water, 4);
+    this.refreshDisplay();
   }
 
   public ingredientSelected = (i: number, selected: boolean): boolean => {
@@ -93,6 +97,7 @@ export class IngredientUI extends PIXI.Container {
 
   public addIngredient(ingredient: IngredientType, count: number) {
     this.ingredients[ingredient] = (this.ingredients[ingredient] || 0) + count;
+    SaveManager.saveExtrinsic();
     this.refreshDisplay();
   }
 
@@ -106,7 +111,7 @@ export class IngredientUI extends PIXI.Container {
     for (let key of Object.keys(this.ingredients)) {
       for (let i = 0; i < (this.ingredients as any)[key]; i++) {
         if (elIndex >= AlchemyData.config.inventorySize) continue;
-        this.ingredientElements[elIndex].setIngredient(AlchemyData.ingredients.find(el => el.id === Number(key)));
+        this.ingredientElements[elIndex].setIngredient(AlchemyData.ingredients.find(el => el.id === key));
         elIndex++;
       }
     }

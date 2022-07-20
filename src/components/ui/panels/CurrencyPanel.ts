@@ -20,6 +20,6 @@ export class CurrencyPanel extends BasePanel {
   }
 
   public update = (extrinsic: IExtrinsicModel) => {
-    this.goldText.text = 'Gold: ' + String(extrinsic.currency.gold) + '  Tokens: ' + String(extrinsic.currency.tokens);
+    // this.goldText.text = 'Gold: ' + String(extrinsic.currency.gold) + '  Tokens: ' + String(extrinsic.currency.tokens);
   }
 }

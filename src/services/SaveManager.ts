@@ -1,26 +1,9 @@
 import * as _ from 'lodash';
 import { IExtrinsicModel, dExtrinsicModel } from '../data/SaveData';
 
-const CURRENT_VERSION = 13;
+const CURRENT_VERSION = 17;
 const SAVE_LOC: 'virtual' | 'local' | 'online' = 'local';
-export const virtualSave: {version: number, extrinsic: IExtrinsicModel } = {
-  version: 8,
-  extrinsic: {
-    achievements: [],
-    lastCharacter: undefined,
-    currency: {
-      gold: 1000000,
-      tokens: 5,
-      refresh: 3,
-      suns: 0,
-      souls: 0,
-    },
-
-    options: {
-      autoFill: false,
-    },
-  },
-};
+export const virtualSave: {version: number, extrinsic: IExtrinsicModel } = {version: 1, extrinsic: null};
 
 function versionControl(version: number, extrinsic: any): IExtrinsicModel {
   // adjust the save between versions

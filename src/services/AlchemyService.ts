@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js';
-import { AlchemyData, IIngredient, IngredientType, IReward, RewardType } from '../data/AlchemyData';
+import { AlchemyData, IAlchemyData, IIngredient, IngredientType, IReward, RewardType } from '../data/AlchemyData';
 import { Colors } from '../data/Colors';
 
 export const AlchemyService = {
@@ -8,7 +8,7 @@ export const AlchemyService = {
       let ingredient = AlchemyData.ingredients.find(el => el.id === reward.id);
       return `${ingredient.label}: ${reward.count}`;
     } else {
-      return `${RewardType[reward.id]}: ${reward.count}`;
+      return `${(RewardType as any)[reward.id]}: ${reward.count}`;
     }
   },
 
@@ -32,5 +32,53 @@ export const AlchemyService = {
     });
 
     return recipe ? recipe.result : null;
+  },
+
+  importTSV(tsv: string) {
+    let config: any = {};
+    let ingredients: any = [];
+    let quests: any = [];
+    let recipes: any = [];
+
+    let parsed: any = tsv.split('\n').map(el => el.split('\t')).filter(el => !el.every(el2 => el2 === ''));
+
+    while (parsed[0][0] !== 'config') {
+      parsed.shift();
+    }
+    parsed.shift();
+
+    while (parsed[0][0] !== 'quests') {
+      config[parsed[0][0]] = Number(parsed[0][1]);
+      parsed.shift();
+    }
+    parsed.shift();
+    parsed.shift();
+
+    while (parsed[0][0] !== 'recipes') {
+      // 'label', 'reward-type', 'reward-id', 'reward-count', 'questCount'
+      quests.push({label: parsed[0][0], reward: {type: parsed[0][1], id: parsed[0][2], count: Number(parsed[0][3])}, questCount: Number(parsed[0][4])});
+      parsed.shift();
+    }
+    parsed.shift();
+    parsed.shift();
+
+    while (parsed[0][0] !== 'ingredients') {
+      // 'ingredients-0', 'ingredients-1', 'result-type', 'result-id', 'result-count'
+      recipes.push({ingredients: [parsed[0][0], parsed[0][1]], result: {type: parsed[0][2], id: parsed[0][3], count: Number(parsed[0][4])}});
+      parsed.shift();
+    }
+    parsed.shift();
+    parsed.shift();
+
+    while (parsed.length > 0) {
+      // 'id', 'label', 'rarity', 'value', ''
+      ingredients.push({id: parsed[0][0], label: parsed[0][1], rarity: Number(parsed[0][2]), value: Number(parsed[0][3])});
+      parsed.shift();
+    }
+
+    AlchemyData.config = config;
+    AlchemyData.ingredients = ingredients;
+    AlchemyData.quests = quests;
+    AlchemyData.recipes = recipes;
   },
 };

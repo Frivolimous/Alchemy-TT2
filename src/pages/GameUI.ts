@@ -20,15 +20,14 @@ export class GameUI extends BaseUI {
   constructor() {
     super({bgColor: Colors.GAME_BACK});
     this.title = new PIXI.Text('Alchemy Test', { fontSize: 30, fontFamily: Fonts.UI, fill: 0x3333ff });
-    this.questUI = new QuestUI(this.addRewardQuest);
     this.resourceUI = new ResourceUI();
     this.ingredientUI = new IngredientUI(this.addRewardCraft);
+    this.questUI = new QuestUI(this.addRewardQuest);
     this.toggleButton = new Button({ width: 100, height: 30, label: 'Toggle Panel', onClick: this.togglePanel });
     this.addChild(this.title, this.toggleButton, this.questUI, this.resourceUI, this.ingredientUI);
     this.questUI.visible = false;
     // this.ingredientUI.visible = false;
     this.togglePanel();
-    this.questUI.refreshQuests();
   }
 
   public positionElements = (e: IResizeEvent) => {

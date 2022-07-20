@@ -8,6 +8,8 @@ import { IResizeEvent } from '../services/GameEvents';
 import { GameUI } from './GameUI';
 import { StringManager } from '../services/StringManager';
 import { OptionModal } from '../components/ui/modals/OptionModal';
+import { AlchemyData } from '../data/AlchemyData';
+import { AlchemyService } from '../services/AlchemyService';
 // import { DragonSpriteBasic } from '../components/game/sprites/DragonAvatar/DragonSpriteBasic';
 // import { AssetLoader } from '../services/AssetLoader';
 
@@ -35,7 +37,17 @@ export class MenuUI extends BaseUI {
 
   public navIn = () => {
     let extrinsic = SaveManager.getExtrinsic();
+    (window as any).stringifyData = this.stringifyData;
+    (window as any).importTSV = AlchemyService.importTSV;
   }
+
+  public navOut = () => {
+    (window as any).stringifyData = null;
+    (window as any).importTSV = null;
+
+  }
+
+  public stringifyData = () => console.log(JSON.stringify(AlchemyData));
 
   public positionElements = (e: IResizeEvent) => {
     this.title.x = (e.innerBounds.width - this.title.width) / 2;

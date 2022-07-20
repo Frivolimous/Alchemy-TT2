@@ -1,30 +1,30 @@
 
 export enum RewardType {
-  Relics,
-  Diamonds,
-  Firestones,
-  Dust,
-  RaidCards,
-  Wildcards,
-  CraftingShards,
-  Pets,
-  Skillpoints,
-  Perks,
-  SpecificPerks,
-  CommonItem,
-  RareItem,
-  LegendaryItem,
-  MythicItem,
-  HeroWeapon,
-  HeroScroll,
-  FortuneWeapon,
-  FortuneScroll,
-  Gold,
-  TournamentPoints,
-  StageRush,
-  Cosmetic,
-  RaidXP,
-  ResetTokens,
+  Relics = 'Relics',
+  Diamonds = 'Diamonds',
+  Firestones = 'Firestones',
+  Dust = 'Dust',
+  RaidCards = 'RaidCards',
+  Wildcards = 'Wildcards',
+  CraftingShards = 'CraftingShards',
+  Pets = 'Pets',
+  Skillpoints = 'Skillpoints',
+  Perks = 'Perks',
+  SpecificPerks = 'SpecificPerks',
+  CommonItem = 'CommonItem',
+  RareItem = 'RareItem',
+  LegendaryItem = 'LegendaryItem',
+  MythicItem = 'MythicItem',
+  HeroWeapon = 'HeroWeapon',
+  HeroScroll = 'HeroScroll',
+  FortuneWeapon = 'FortuneWeapon',
+  FortuneScroll = 'FortuneScroll',
+  Gold = 'Gold',
+  TournamentPoints = 'TournamentPoints',
+  StageRush = 'StageRush',
+  Cosmetic = 'Cosmetic',
+  RaidXP = 'RaidXP',
+  ResetTokens = 'ResetTokens',
 }
 
 export enum ScoreType {
@@ -35,27 +35,48 @@ export enum ScoreType {
 }
 
 export enum IngredientType {
-  Bug,
-  Dark,
-  Dragon,
-  Electric,
-  Fairy,
-  Fighting,
-  Fire,
-  Flying,
-  Ghost,
-  Grass,
-  Ground,
-  Ice,
-  Normal,
-  Poison,
-  Psychic,
-  Rock,
-  Steel,
-  Water,
+  Bug = 'Bug',
+  Dark = 'Dark',
+  Dragon = 'Dragon',
+  Electric = 'Electric',
+  Fairy = 'Fairy',
+  Fighting = 'Fighting',
+  Fire = 'Fire',
+  Flying = 'Flying',
+  Ghost = 'Ghost',
+  Grass = 'Grass',
+  Ground = 'Ground',
+  Ice = 'Ice',
+  Normal = 'Normal',
+  Poison = 'Poison',
+  Psychic = 'Psychic',
+  Rock = 'Rock',
+  Steel = 'Steel',
+  Water = 'Water',
 }
 
-export enum Rariry { // need 5
+export const IngredientIndex = {
+  Bug: 0,
+  Dark: 1,
+  Dragon: 2,
+  Electric: 3,
+  Fairy: 4,
+  Fighting: 5,
+  Fire: 6,
+  Flying: 7,
+  Ghost: 8,
+  Grass: 9,
+  Ground: 10,
+  Ice: 11,
+  Normal: 12,
+  Poison: 13,
+  Psychic: 14,
+  Rock: 15,
+  Steel: 16,
+  Water: 17,
+};
+
+export enum Rarity { // need 5
   Common,
   Rare,
   Epic,
@@ -71,34 +92,29 @@ export const AlchemyData: IAlchemyData = {
   },
 
   quests: [
-    {id: '1', label: 'Kill 1e3 Titans', reward: {type: 'ingredient', id: IngredientType.Fire, count: 1}, questCount: 1},
-    {id: '2', label: 'Prestige 10 Times', reward: {type: 'ingredient', id: IngredientType.Bug, count: 1}, questCount: 1},
-    {id: '3', label: 'Collect 100 Faires', reward: {type: 'ingredient', id: IngredientType.Grass, count: 1}, questCount: 1},
-    {id: '4', label: 'Watch a Video Ad', reward: {type: 'ingredient', id: IngredientType.Water, count: 1}, questCount: 1},
-    {id: '5', label: 'Sell your Soul', reward: {type: 'ingredient', id: IngredientType.Ghost, count: 1}, questCount: 1},
-    // {id: '2', label: 'Second Quest', reward: {type: 'ingredient', id: IngredientType.Water, count: 1}, questCount: 1},
-    // {id: '3', label: 'Random Quest', reward: {type: 'value', id: RewardType.Dust, count: 100}, questCount: 1},
-    // {id: '4', label: 'BLABAL Quest', reward: {type: 'value', id: RewardType.Dust, count: 100}, questCount: 1},
-    // {id: '5', label: 'Fireball Quest', reward: {type: 'value', id: RewardType.Dust, count: 100}, questCount: 1},
-    // {id: '6', label: 'Null Quest', reward: {type: 'value', id: RewardType.Dust, count: 100}, questCount: 1},
+    { label: 'Kill 1e3 Titans', reward: {type: 'ingredient', id: IngredientType.Fire, count: 1}, questCount: 1},
+    { label: 'Prestige 10 Times', reward: {type: 'ingredient', id: IngredientType.Bug, count: 1}, questCount: 1},
+    { label: 'Collect 100 Faires', reward: {type: 'ingredient', id: IngredientType.Grass, count: 1}, questCount: 1},
+    { label: 'Watch a Video Ad', reward: {type: 'ingredient', id: IngredientType.Water, count: 1}, questCount: 1},
+    { label: 'Sell your Soul', reward: {type: 'ingredient', id: IngredientType.Ghost, count: 1}, questCount: 1},
   ],
 
   recipes: [
-    {id: '1', ingredients: [IngredientType.Fire, IngredientType.Bug], result: {type: 'value', id: RewardType.Diamonds, count:	200}},
-    {id: '2', ingredients: [IngredientType.Fire, IngredientType.Fire], result: {type: 'value', id: RewardType.Firestones, count:	200}},
-    {id: '3', ingredients: [IngredientType.Fire, IngredientType.Ghost], result: {type: 'value', id: RewardType.Dust, count:	400}},
-    {id: '4', ingredients: [IngredientType.Fire, IngredientType.Grass], result: {type: 'value', id: RewardType.CraftingShards, count:	5}},
-    {id: '5', ingredients: [IngredientType.Fire, IngredientType.Water], result: {type: 'value', id: RewardType.Firestones, count:	200}},
-    {id: '6', ingredients: [IngredientType.Bug, IngredientType.Bug], result: {type: 'value', id: RewardType.Firestones, count:	200}},
-    {id: '7', ingredients: [IngredientType.Bug, IngredientType.Ghost], result: {type: 'value', id: RewardType.RareItem, count:	4}},
-    {id: '8', ingredients: [IngredientType.Bug, IngredientType.Grass], result: {type: 'value', id: RewardType.HeroWeapon, count:	1}},
-    {id: '9', ingredients: [IngredientType.Bug, IngredientType.Water], result: {type: 'value', id: RewardType.Perks, count:	3}},
-    {id: '10', ingredients: [IngredientType.Grass, IngredientType.Ghost], result: {type: 'value', id: RewardType.Pets, count:	7}},
-    {id: '11', ingredients: [IngredientType.Grass, IngredientType.Grass], result: {type: 'value', id: RewardType.Firestones, count:	200}},
-    {id: '12', ingredients: [IngredientType.Grass, IngredientType.Water], result: {type: 'value', id: RewardType.Diamonds, count:	200}},
-    {id: '13', ingredients: [IngredientType.Water, IngredientType.Ghost], result: {type: 'value', id: RewardType.Firestones, count:	200}},
-    {id: '14', ingredients: [IngredientType.Water, IngredientType.Water], result: {type: 'value', id: RewardType.Firestones, count:	200}},
-    {id: '15', ingredients: [IngredientType.Ghost, IngredientType.Ghost], result: {type: 'value', id: RewardType.Firestones, count:	200}},
+    {ingredients: [IngredientType.Fire, IngredientType.Bug], result: {type: 'value', id: RewardType.Diamonds, count:	200}},
+    {ingredients: [IngredientType.Fire, IngredientType.Fire], result: {type: 'value', id: RewardType.Firestones, count:	200}},
+    {ingredients: [IngredientType.Fire, IngredientType.Ghost], result: {type: 'value', id: RewardType.Dust, count:	400}},
+    {ingredients: [IngredientType.Fire, IngredientType.Grass], result: {type: 'value', id: RewardType.CraftingShards, count:	5}},
+    {ingredients: [IngredientType.Fire, IngredientType.Water], result: {type: 'value', id: RewardType.Firestones, count:	200}},
+    {ingredients: [IngredientType.Bug, IngredientType.Bug], result: {type: 'value', id: RewardType.Firestones, count:	200}},
+    {ingredients: [IngredientType.Bug, IngredientType.Ghost], result: {type: 'value', id: RewardType.RareItem, count:	4}},
+    {ingredients: [IngredientType.Bug, IngredientType.Grass], result: {type: 'value', id: RewardType.HeroWeapon, count:	1}},
+    {ingredients: [IngredientType.Bug, IngredientType.Water], result: {type: 'value', id: RewardType.Perks, count:	3}},
+    { ingredients: [IngredientType.Grass, IngredientType.Ghost], result: {type: 'value', id: RewardType.Pets, count:	7}},
+    { ingredients: [IngredientType.Grass, IngredientType.Grass], result: {type: 'value', id: RewardType.Firestones, count:	200}},
+    { ingredients: [IngredientType.Grass, IngredientType.Water], result: {type: 'value', id: RewardType.Diamonds, count:	200}},
+    { ingredients: [IngredientType.Water, IngredientType.Ghost], result: {type: 'value', id: RewardType.Firestones, count:	200}},
+    { ingredients: [IngredientType.Water, IngredientType.Water], result: {type: 'value', id: RewardType.Firestones, count:	200}},
+    { ingredients: [IngredientType.Ghost, IngredientType.Ghost], result: {type: 'value', id: RewardType.Firestones, count:	200}},
   ],
 
   ingredients: [
@@ -123,7 +139,7 @@ export const AlchemyData: IAlchemyData = {
   ],
 };
 
-interface IAlchemyData {
+export interface IAlchemyData {
   config: {
     inventorySize: number;
     recipeSize: number;
@@ -136,7 +152,6 @@ interface IAlchemyData {
 }
 
 export interface IQuest {
-  id: string;
   label: string;
   reward: IReward;
   questCount: number;
@@ -145,12 +160,11 @@ export interface IQuest {
 export interface IIngredient {
   id: IngredientType;
   label: string;
-  rarity: number;
+  rarity: Rarity;
   value: number;
 }
 
 export interface IRecipe {
-  id: string;
   ingredients: IngredientType[];
   result: IReward;
 }

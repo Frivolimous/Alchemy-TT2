@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js';
-import { AlchemyData, IIngredient, IQuest } from '../data/AlchemyData';
+import { AlchemyData, IIngredient, IngredientIndex, IQuest } from '../data/AlchemyData';
 import { Colors } from '../data/Colors';
 
 export class IngredientItem extends PIXI.Container {
@@ -75,7 +75,7 @@ export class IngredientItem extends PIXI.Container {
         this.sprite.destroy();
       }
 
-      this.sprite = IngredientItem.getSprite(ingredient.id);
+      this.sprite = IngredientItem.getSprite(IngredientIndex[ingredient.id]);
       this.addChild(this.sprite);
       this.sprite.width = this.mySize;
       this.sprite.scale.y = this.sprite.scale.x;

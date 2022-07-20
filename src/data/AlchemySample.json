@@ -1,0 +1,351 @@
+{
+  "config": {
+    "inventorySize": 12,
+    "recipeSize": 2,
+    "questsPerDay": 5
+  },
+  "quests": [
+    {
+      "id": "1",
+      "label": "Kill 1e3 Titans",
+      "reward": {
+        "type": "ingredient",
+        "id": "Fire",
+        "count": 1
+      },
+      "questCount": 1
+    },
+    {
+      "id": "2",
+      "label": "Prestige 10 Times",
+      "reward": {
+        "type": "ingredient",
+        "id": "Bug",
+        "count": 1
+      },
+      "questCount": 1
+    },
+    {
+      "id": "3",
+      "label": "Collect 100 Faires",
+      "reward": {
+        "type": "ingredient",
+        "id": "Grass",
+        "count": 1
+      },
+      "questCount": 1
+    },
+    {
+      "id": "4",
+      "label": "Watch a Video Ad",
+      "reward": {
+        "type": "ingredient",
+        "id": "Water",
+        "count": 1
+      },
+      "questCount": 1
+    },
+    {
+      "id": "5",
+      "label": "Sell your Soul",
+      "reward": {
+        "type": "ingredient",
+        "id": "Ghost",
+        "count": 1
+      },
+      "questCount": 1
+    }
+  ],
+  "recipes": [
+    {
+      "id": "1",
+      "ingredients": [
+        "Fire",
+        "Bug"
+      ],
+      "result": {
+        "type": "value",
+        "id": "Diamonds",
+        "count": 200
+      }
+    },
+    {
+      "id": "2",
+      "ingredients": [
+        "Fire",
+        "Fire"
+      ],
+      "result": {
+        "type": "value",
+        "id": "Firestones",
+        "count": 200
+      }
+    },
+    {
+      "id": "3",
+      "ingredients": [
+        "Fire",
+        "Ghost"
+      ],
+      "result": {
+        "type": "value",
+        "id": "Dust",
+        "count": 400
+      }
+    },
+    {
+      "id": "4",
+      "ingredients": [
+        "Fire",
+        "Grass"
+      ],
+      "result": {
+        "type": "value",
+        "id": "CraftingShards",
+        "count": 5
+      }
+    },
+    {
+      "id": "5",
+      "ingredients": [
+        "Fire",
+        "Water"
+      ],
+      "result": {
+        "type": "value",
+        "id": "Firestones",
+        "count": 200
+      }
+    },
+    {
+      "id": "6",
+      "ingredients": [
+        "Bug",
+        "Bug"
+      ],
+      "result": {
+        "type": "value",
+        "id": "Firestones",
+        "count": 200
+      }
+    },
+    {
+      "id": "7",
+      "ingredients": [
+        "Bug",
+        "Ghost"
+      ],
+      "result": {
+        "type": "value",
+        "id": "RareItem",
+        "count": 4
+      }
+    },
+    {
+      "id": "8",
+      "ingredients": [
+        "Bug",
+        "Grass"
+      ],
+      "result": {
+        "type": "value",
+        "id": "HeroWeapon",
+        "count": 1
+      }
+    },
+    {
+      "id": "9",
+      "ingredients": [
+        "Bug",
+        "Water"
+      ],
+      "result": {
+        "type": "value",
+        "id": "Perks",
+        "count": 3
+      }
+    },
+    {
+      "id": "10",
+      "ingredients": [
+        "Grass",
+        "Ghost"
+      ],
+      "result": {
+        "type": "value",
+        "id": "Pets",
+        "count": 7
+      }
+    },
+    {
+      "id": "11",
+      "ingredients": [
+        "Grass",
+        "Grass"
+      ],
+      "result": {
+        "type": "value",
+        "id": "Firestones",
+        "count": 200
+      }
+    },
+    {
+      "id": "12",
+      "ingredients": [
+        "Grass",
+        "Water"
+      ],
+      "result": {
+        "type": "value",
+        "id": "Diamonds",
+        "count": 200
+      }
+    },
+    {
+      "id": "13",
+      "ingredients": [
+        "Water",
+        "Ghost"
+      ],
+      "result": {
+        "type": "value",
+        "id": "Firestones",
+        "count": 200
+      }
+    },
+    {
+      "id": "14",
+      "ingredients": [
+        "Water",
+        "Water"
+      ],
+      "result": {
+        "type": "value",
+        "id": "Firestones",
+        "count": 200
+      }
+    },
+    {
+      "id": "15",
+      "ingredients": [
+        "Ghost",
+        "Ghost"
+      ],
+      "result": {
+        "type": "value",
+        "id": "Firestones",
+        "count": 200
+      }
+    }
+  ],
+  "ingredients": [
+    {
+      "id": "Normal",
+      "label": "Charm",
+      "rarity": 1,
+      "value": 2.5
+    },
+    {
+      "id": "Fire",
+      "label": "Flame",
+      "rarity": 1,
+      "value": 2.5
+    },
+    {
+      "id": "Water",
+      "label": "Droplet",
+      "rarity": 1,
+      "value": 2.5
+    },
+    {
+      "id": "Grass",
+      "label": "Leaf",
+      "rarity": 1,
+      "value": 2.5
+    },
+    {
+      "id": "Electric",
+      "label": "Shock",
+      "rarity": 1,
+      "value": 2.5
+    },
+    {
+      "id": "Ice",
+      "label": "Frost",
+      "rarity": 1,
+      "value": 2.5
+    },
+    {
+      "id": "Fighting",
+      "label": "Fist",
+      "rarity": 1,
+      "value": 2.5
+    },
+    {
+      "id": "Poison",
+      "label": "Bubbles",
+      "rarity": 1,
+      "value": 2.5
+    },
+    {
+      "id": "Ground",
+      "label": "Earth",
+      "rarity": 1,
+      "value": 2.5
+    },
+    {
+      "id": "Flying",
+      "label": "Wings",
+      "rarity": 1,
+      "value": 2.5
+    },
+    {
+      "id": "Psychic",
+      "label": "Eye",
+      "rarity": 1,
+      "value": 2.5
+    },
+    {
+      "id": "Bug",
+      "label": "Beetle",
+      "rarity": 1,
+      "value": 2.5
+    },
+    {
+      "id": "Rock",
+      "label": "Rock",
+      "rarity": 1,
+      "value": 2.5
+    },
+    {
+      "id": "Ghost",
+      "label": "Wisp",
+      "rarity": 1,
+      "value": 2.5
+    },
+    {
+      "id": "Dark",
+      "label": "Darkness",
+      "rarity": 1,
+      "value": 2.5
+    },
+    {
+      "id": "Dragon",
+      "label": "Mixture",
+      "rarity": 1,
+      "value": 2.5
+    },
+    {
+      "id": "Steel",
+      "label": "Artifact",
+      "rarity": 1,
+      "value": 2.5
+    },
+    {
+      "id": "Fairy",
+      "label": "Myth",
+      "rarity": 1,
+      "value": 2.5
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+config				
+inventorySize	12			
+recipeSize	2			
+questsPerDay	5			
+				
+quests				
+label	reward-type	reward-id	reward-count	questCount
+Kill 1e3 Titans	ingredient	Fire	1	1
+Prestige 10 Times	ingredient	Bug	1	1
+Collect 100 Faires	ingredient	Grass	1	1
+Watch a Video Ad	ingredient	Water	1	1
+Sell your Soul	ingredient	Ghost	1	1
+				
+recipes				
+ingredients-0	ingredients-1	result-type	result-id	result-count
+Fire	Bug	value	Diamonds	200
+Fire	Fire	value	Firestones	200
+Fire	Ghost	value	Dust	400
+Fire	Grass	value	CraftingShards	5
+Fire	Water	value	Firestones	200
+Bug	Bug	value	Firestones	200
+Bug	Ghost	value	RareItem	4
+Bug	Grass	value	HeroWeapon	1
+Bug	Water	value	Perks	3
+Grass	Ghost	value	Pets	7
+Grass	Grass	value	Firestones	200
+Grass	Water	value	Diamonds	200
+Water	Ghost	value	Firestones	200
+Water	Water	value	Firestones	200
+Ghost	Ghost	value	Firestones	200
+				
+ingredients				
+id	label	rarity	value	
+Normal	Charm	1	2.5	
+Fire	Flame	1	2.5	
+Water	Droplet	1	2.5	
+Grass	Leaf	1	2.5	
+Electric	Shock	1	2.5	
+Ice	Frost	1	2.5	
+Fighting	Fist	1	2.5	
+Poison	Bubbles	1	2.5	
+Ground	Earth	1	2.5	
+Flying	Wings	1	2.5	
+Psychic	Eye	1	2.5	
+Bug	Beetle	1	2.5	
+Rock	Rock	1	2.5	
+Ghost	Wisp	1	2.5	
+Dark	Darkness	1	2.5	
+Dragon	Mixture	1	2.5	
+Steel	Artifact	1	2.5	
+Fairy	Myth	1	2.5	
