@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js';
 import { AlchemyData, IAlchemyData, IIngredient, IngredientType, IReward, RewardType } from '../data/AlchemyData';
 import { Colors } from '../data/Colors';
+import { SaveManager } from './SaveManager';
 
 export const AlchemyService = {
   makeRewardString(reward: IReward) {
@@ -34,7 +35,24 @@ export const AlchemyService = {
     return recipe ? recipe.result : null;
   },
 
-  importTSV(tsv: string) {
+  randomQuests(count: number) {
+    let quests = AlchemyData.quests.map(el => el);
+
+    return AlchemyService.sampleArray(quests, 5);
+  },
+
+  sampleArray<T>(a: T[], count: number = 1): T[] {
+    let m: T[] = [];
+
+    while (m.length < count) {
+      let index = Math.floor(Math.random() * a.length);
+      m.push(a.splice(index, 1)[0]);
+    }
+
+    return m;
+  },
+
+  importTSV(tsv: string, invalidateSave = false) {
     let config: any = {};
     let ingredients: any = [];
     let quests: any = [];
@@ -80,5 +98,12 @@ export const AlchemyService = {
     AlchemyData.ingredients = ingredients;
     AlchemyData.quests = quests;
     AlchemyData.recipes = recipes;
+
+    console.log(JSON.stringify(AlchemyData));
+    // return AlchemyData;
+
+    if (invalidateSave) {
+      SaveManager.resetData()();
+    }
   },
 };

@@ -38,13 +38,8 @@ export class QuestUI extends PIXI.Container {
       this.questList.shift();
     }
 
-    // for (let i = 0; i < AlchemyData.config.questsPerDay; i++) {
-    //   let index = Math.floor(Math.random() * AlchemyData.quests.length);
-    //   let quest = AlchemyData.quests[index];
-    //   this.addQuest(quest);
-    // }
+    AlchemyService.randomQuests(AlchemyData.config.questsPerDay).forEach(quest => this.addQuest(quest));
 
-    AlchemyData.quests.forEach(quest => this.addQuest(quest));
     SaveManager.saveExtrinsic();
 
     this.updateDisplay();
