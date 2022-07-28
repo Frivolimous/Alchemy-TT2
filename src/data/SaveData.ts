@@ -7,6 +7,8 @@ export interface IExtrinsicModel {
   ingredients: Partial<{[key in IngredientType]: number}>;
   resources: Partial<{[key in RewardType]: number}>;
   scores: Partial<{[key in ScoreType]: number}>;
+  discoveredIngredients: Partial<{[key in IngredientType]: boolean}>;
+  discoveredRecipes: [IngredientType, IngredientType][];
 }
 
 export const dExtrinsicModel: IExtrinsicModel = {
@@ -14,4 +16,6 @@ export const dExtrinsicModel: IExtrinsicModel = {
   ingredients: {},
   resources: { [RewardType.Gold]: 100 },
   scores: {},
+  discoveredIngredients: {},
+  discoveredRecipes: [],
 };

@@ -63,14 +63,23 @@ export class IngredientItem extends PIXI.Container {
 
   public get isSelected() { return this.highlight.visible; }
 
+  public setText(s: string) {
+    this.textBlock.text = s;
+    if (this.textBlock.width > this.mySize - 5) {
+      this.textBlock.width = this.mySize - 5;
+      this.textBlock.scale.y = this.textBlock.scale.x;
+    }
+
+    this.textBlock.x = (this.mySize - this.textBlock.width) / 2;
+    this.textBlock.y = (this.mySize - this.textBlock.height) / 2;
+  }
+
   public setIngredient(ingredient?: IIngredient) {
     this.ingredient = ingredient;
     this.highlight.visible = false;
 
     if (ingredient) {
-      this.textBlock.text = ingredient.label;
-      this.textBlock.x = (this.mySize - this.textBlock.width) / 2;
-      this.textBlock.y = (this.mySize - this.textBlock.height) / 2;
+      this.textBlock.text = '';
       if (this.sprite) {
         this.sprite.destroy();
       }

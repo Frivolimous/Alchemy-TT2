@@ -59,12 +59,14 @@ export class QuestUI extends PIXI.Container {
     }
 
     this.questList.forEach((entry, index) => {
-      let h = 60;
-      let el = new QuestItem(entry.quest.label, AlchemyService.makeRewardString(entry.quest.reward), () => this.activateQuest(index), 250, h);
-      if (entry.completed) el.completeQuest();
-      this.addChild(el);
-      el.position.set(25, 45 + (h + 5) * this.questElements.length);
-      this.questElements.push(el);
+      if (entry.quest) {
+        let h = 60;
+        let el = new QuestItem(entry.quest.label, AlchemyService.makeRewardString(entry.quest.reward), () => this.activateQuest(index), 250, h);
+        if (entry.completed) el.completeQuest();
+        this.addChild(el);
+        el.position.set(25, 45 + (h + 5) * this.questElements.length);
+        this.questElements.push(el);
+      }
     });
   }
 

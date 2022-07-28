@@ -32,13 +32,11 @@ export class ResourceUI extends PIXI.Container {
 
   public addResource(resource: RewardType, value: number) {
     this.resources[resource] = (this.resources[resource] || 0) + value;
-    SaveManager.saveExtrinsic();
     this.refreshDisplay();
   }
 
-  public addScore(score: ScoreType, value: number) {
+  public addScore(score: ScoreType, value: number = 1) {
     this.scores[score] = (this.scores[score] || 0) + value;
-    SaveManager.saveExtrinsic();
     this.refreshDisplay();
   }
 

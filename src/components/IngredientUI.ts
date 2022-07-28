@@ -34,7 +34,7 @@ export class IngredientUI extends PIXI.Container {
 
     let inventorySize = AlchemyData.config.inventorySize;
     let across = 4;
-    let itemSize = (300 - 40) / 4 - 10;
+    let itemSize = (300 - 40) / across - 10;
     for (let i = 0; i < inventorySize; i++) {
       let item = new IngredientItem(i, this.ingredientSelected, itemSize);
       contents.addChild(item);
@@ -97,7 +97,6 @@ export class IngredientUI extends PIXI.Container {
 
   public addIngredient(ingredient: IngredientType, count: number) {
     this.ingredients[ingredient] = (this.ingredients[ingredient] || 0) + count;
-    SaveManager.saveExtrinsic();
     this.refreshDisplay();
   }
 
@@ -135,5 +134,13 @@ export class IngredientUI extends PIXI.Container {
     } else {
       this.onRewardAdded(null, ingredients);
     }
+  }
+
+  public getWidth() {
+    return 300;
+  }
+
+  public getHeight() {
+    return 500;
   }
 }
