@@ -12,28 +12,37 @@ import { SimpleModal } from '../components/ui/modals/SimpleModal';
 import { AlchemyService } from '../services/AlchemyService';
 import { SaveManager } from '../services/SaveManager';
 import { RecipeUI } from '../components/RecipeUI';
+import { IngredientStackUI } from '../components/IngredientStackUI';
 
 export class GameUI extends BaseUI {
   private title: PIXI.Text;
   private questUI: QuestUI;
   private resourceUI: ResourceUI;
   private ingredientUI: IngredientUI;
+  private ingredientStackUI: IngredientStackUI;
   private recipeUI: RecipeUI;
   private generateB: Button;
+  private generateB2: Button;
   private toggleButton: Button;
+  private ingredientModeButton: Button;
+  private recipeModeButton: Button;
 
   constructor() {
     super({bgColor: Colors.GAME_BACK});
     this.title = new PIXI.Text('Alchemy Test', { fontSize: 30, fontFamily: Fonts.UI, fill: 0x3333ff });
     this.resourceUI = new ResourceUI();
     this.ingredientUI = new IngredientUI(this.addRewardCraft);
+    this.ingredientStackUI = new IngredientStackUI(this.addRewardCraft);
     this.questUI = new QuestUI(this.addRewardQuest);
     this.recipeUI = new RecipeUI();
-    this.toggleButton = new Button({ width: 100, height: 30, label: 'Toggle Panel', onClick: this.togglePanel });
+    this.toggleButton = new Button({ width: 100, height: 30, label: 'Show Recipes', onClick: this.togglePanel });
     this.generateB = new Button({ width: 100, height: 30, label: 'Add Ingredient', onClick: this.addRandomIngredient });
-    this.addChild(this.title, this.questUI, this.resourceUI, this.ingredientUI);
+    this.generateB2 = new Button({ width: 100, height: 30, label: '12 Ingredients', onClick: this.add12RandomIngredients });
+    this.ingredientModeButton = new Button({ width: 100, height: 30, label: 'Change Mode', onClick: this.changeIngredientMode });
+    this.recipeModeButton = new Button({ width: 100, height: 30, label: 'Change Mode', onClick: this.changeRecipeMode });
+    this.addChild(this.title, this.questUI, this.resourceUI, this.ingredientUI, this.ingredientStackUI);
     this.addChild(this.toggleButton);
-    this.addChild(this.generateB);
+    this.addChild(this.generateB, this.generateB2, this.ingredientModeButton, this.recipeModeButton);
 
     this.addChild(this.recipeUI);
 
@@ -45,6 +54,7 @@ export class GameUI extends BaseUI {
       }
     });
 
+    this.ingredientUI.visible = false;
     this.questUI.visible = false;
     this.recipeUI.visible = false;
     // this.ingredientUI.visible = false;
@@ -57,14 +67,18 @@ export class GameUI extends BaseUI {
 
     this.questUI.y = 100;
     this.ingredientUI.y = 100;
-    this.questUI.x = this.ingredientUI.x = 50;
+    this.ingredientStackUI.y = 100;
+    this.questUI.x = this.ingredientUI.x = this.ingredientStackUI.x = 50;
     this.recipeUI.x = 40;
     this.recipeUI.y = 40;
 
     this.resourceUI.y = 100;
     this.resourceUI.x = 400;
     this.toggleButton.position.set(5, 5);
+    this.recipeModeButton.position.set(this.toggleButton.x + this.toggleButton.getWidth() + 5, 5);
     this.generateB.position.set(this.ingredientUI.x + (this.ingredientUI.getWidth() - this.generateB.getWidth()) / 2, this.ingredientUI.y + this.ingredientUI.getHeight() + 20);
+    this.generateB2.position.set(this.generateB.x, this.generateB.y + this.generateB.getHeight() + 5);
+    this.ingredientModeButton.position.set(this.generateB2.x, this.generateB2.y + this.generateB2.getHeight() + 5);
   }
 
   private addRewardQuest = (reward: IReward) => {
@@ -78,6 +92,7 @@ export class GameUI extends BaseUI {
         SaveManager.getExtrinsic().discoveredIngredients[reward.id] = true;
       }
       this.ingredientUI.addIngredient(reward.id, reward.count);
+      this.ingredientStackUI.refreshDisplay();
     }
   }
 
@@ -96,6 +111,7 @@ export class GameUI extends BaseUI {
           SaveManager.getExtrinsic().discoveredIngredients[reward.id] = true;
         }
         this.ingredientUI.addIngredient(reward.id, reward.count);
+        this.ingredientStackUI.refreshDisplay();
         dialogueText = `Congratulations! You turned ${ingredients[0].label} and ${ingredients[1].label} into ${reward.count} ${IngredientType[reward.id]}(s).`;
       }
       let dialogue = new SimpleModal(dialogueText);
@@ -116,21 +132,32 @@ export class GameUI extends BaseUI {
   private togglePanel = () => {
     this.recipeUI.visible = !this.recipeUI.visible;
     this.recipeUI.refreshDisplay();
-    // if (this.questUI.visible) {
-    //   this.questUI.visible = false;
-    //   this.ingredientUI.visible = true;
-    //   this.toggleButton.addLabel('Show Quests');
-    // } else {
-    //   this.questUI.visible = true;
-    //   this.ingredientUI.visible = false;
-    //   this.toggleButton.addLabel('Show Ingredients');
-    // }
   }
 
   private addRandomIngredient = () => {
     this.resourceUI.addScore(ScoreType.IngredientAdded, 1);
     let ingredient = AlchemyService.randomIngredient();
     this.ingredientUI.addIngredient(ingredient.id, 1);
+    this.ingredientStackUI.refreshDisplay();
     SaveManager.saveExtrinsic();
+  }
+
+  private add12RandomIngredients = () => {
+    this.resourceUI.addScore(ScoreType.IngredientAdded, 12);
+    for (let i = 0; i < 12; i++) {
+      let ingredient = AlchemyService.randomIngredient();
+      this.ingredientUI.addIngredient(ingredient.id, 1);
+    }
+    this.ingredientStackUI.refreshDisplay();
+    SaveManager.saveExtrinsic();
+  }
+
+  private changeIngredientMode = () => {
+    this.ingredientUI.visible = !this.ingredientUI.visible;
+    this.ingredientStackUI.visible = !this.ingredientUI.visible;
+  }
+
+  private changeRecipeMode = () => {
+    this.recipeUI.changeMode();
   }
 }

@@ -4,7 +4,8 @@ export type CurrencySlug = 'gold' | 'tokens' | 'refresh' | 'suns' | 'souls';
 
 export interface IExtrinsicModel {
   quests: {quest: IQuest, completed: boolean}[];
-  ingredients: Partial<{[key in IngredientType]: number}>;
+  // ingredients: Partial<{[key in IngredientType]: number}>;
+  ingredients: IngredientType[];
   resources: Partial<{[key in RewardType]: number}>;
   scores: Partial<{[key in ScoreType]: number}>;
   discoveredIngredients: Partial<{[key in IngredientType]: boolean}>;
@@ -13,7 +14,7 @@ export interface IExtrinsicModel {
 
 export const dExtrinsicModel: IExtrinsicModel = {
   quests: [],
-  ingredients: {},
+  ingredients: [],
   resources: { [RewardType.Gold]: 100 },
   scores: {},
   discoveredIngredients: {},

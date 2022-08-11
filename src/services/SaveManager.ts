@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import { IExtrinsicModel, dExtrinsicModel } from '../data/SaveData';
 
-const CURRENT_VERSION = 18;
+const CURRENT_VERSION = 19;
 const SAVE_LOC: 'virtual' | 'local' | 'online' = 'local';
 export const virtualSave: {version: number, extrinsic: IExtrinsicModel } = {version: 1, extrinsic: null};
 

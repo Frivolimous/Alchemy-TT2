@@ -90,7 +90,7 @@ export class ScrollWindow extends PIXI.Container {
     this.innerHeight += this.paddingTB * 2;
     this.innerHeight = this.innerHeight || 0;
     this.scrollbar && this.scrollbar.drawMover(this.outerHeight / this.innerHeight);
-    console.log('draw!', this.outerHeight, this.innerHeight);
+    // console.log('draw!', this.outerHeight, this.innerHeight);
   }
 
   public addObject = (_object: PIXI.Container) => {
@@ -124,17 +124,17 @@ export class ScrollWindow extends PIXI.Container {
     return this.back.height * (withScale ? this.scale.y : 1);
   }
 
-  private onWheel = (e: WheelEvent) => {
-    this.vY -= e.deltaY * 0.00008 * this.outerHeight;
-  }
-
-  private scrollTo = (p: number) => {
+  public scrollTo = (p: number) => {
     if (this.innerHeight < this.outerHeight) {
       this.container.y = this.paddingTB;
     } else {
       this.container.y = this.paddingTB + (this.outerHeight - this.innerHeight) * p;
     }
     this.container.y = Math.min(Math.max(this.container.y, this.outerHeight - this.innerHeight + this.paddingTB), this.paddingTB);
+  }
+
+  private onWheel = (e: WheelEvent) => {
+    this.vY -= e.deltaY * 0.00008 * this.outerHeight;
   }
 
   private fixY = () => {

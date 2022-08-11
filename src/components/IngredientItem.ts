@@ -39,6 +39,7 @@ export class IngredientItem extends PIXI.Container {
   public sprite: PIXI.Sprite;
   public background = new PIXI.Graphics();
   public ingredient: IIngredient;
+  public counter: PIXI.Text;
 
   private highlight = new PIXI.Graphics();
 
@@ -62,6 +63,21 @@ export class IngredientItem extends PIXI.Container {
   }
 
   public get isSelected() { return this.highlight.visible; }
+
+  public set count(count: number) {
+    if (!this.counter) {
+      this.counter = new PIXI.Text('0', {fontSize: 12, fontWeight: 'bold', stroke: 0xffffff, strokeThickness: 2});
+      this.counter.anchor.set(1, 1);
+      this.counter.position.set(this.mySize, this.mySize);
+    }
+
+    this.addChild(this.counter);
+    this.counter.text = String(count);
+  }
+
+  public get count(): number {
+    return Number(this.counter.text);
+  }
 
   public setText(s: string) {
     this.textBlock.text = s;
